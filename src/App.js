@@ -1,10 +1,12 @@
 import useLocalStorageState from 'use-local-storage-state'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import './App.css'
 import 'bulma/css/bulma.css'
 
 import Login from './components/Login'
 import Dashboard from './components/Dashboard'
+import Signup from './components/Signup'
 
 function App () {
   // I am using a library called use-local-storage-stage to store
@@ -28,14 +30,31 @@ function App () {
     >
       {/* I am checking for a token which for the purpose
       of this App means my user is logged in */}
-      {token
-        ? <Dashboard
-            setToken={setToken}
-            setUsername={setUsername}
-            token={token}
-            username={username}
+      <Router>
+        <Switch>
+          <Route
+            exact path='/'
+            // I need return my component in an arrow
+            // function if I need to pass props to it
+            component={() =>
+              <Dashboard
+                setToken={setToken}
+                setUsername={setUsername}
+                token={token}
+                username={username}
+              />}
           />
-        : <Login setAuthToken={setAuthToken} />}
+          <Route
+            path='/login'
+            component={() =>
+              <Login setAuthToken={setAuthToken} />}
+          />
+          <Route
+            path='/signup'
+            component={() => <Signup />}
+          />
+        </Switch>
+      </Router>
     </div>
   )
 }

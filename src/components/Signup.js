@@ -1,12 +1,16 @@
+import 'bulma/css/bulma.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 
-const Register = () => {
+const Signup = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
   return (
     <>
       <div className='logo'>
         <p className='has-text-primary has-text-centered'>Pug.ly<i class='fas fa-paw' /></p>
       </div>
-      <form className='form'>
+      <form className='form' onSubmit={handleSubmit}>
         <label className='label'>Email</label>
         <input className='input' type='text' placeholder='email@domain.com' />
         <label className='label'>Username</label>
@@ -21,4 +25,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Signup

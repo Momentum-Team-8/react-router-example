@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import 'bulma/css/bulma.css'
+import '../App.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 
 import { requestLogin } from '../api.js'
@@ -33,7 +34,7 @@ const Login = ({ setAuthToken }) => {
         >
           Pug.ly
         </p>
-        <i class='fas fa-paw' />
+        <i className='fas fa-paw' />
       </div>
       {/* Show the user a validation error if there is one */}
       {errors &&
