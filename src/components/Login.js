@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import 'bulma/css/bulma.css'
 import '../App.css'
@@ -10,6 +11,7 @@ const Login = ({ setAuthToken }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState('')
+  const history = useHistory()
 
   function handleSubmit (e) {
     e.preventDefault()
@@ -19,6 +21,7 @@ const Login = ({ setAuthToken }) => {
       .then((data) => {
         if (data && data.auth_token) {
           setAuthToken(username, data.auth_token)
+          history.push('/')
         }
       })
       .catch((error) => {
@@ -63,7 +66,7 @@ const Login = ({ setAuthToken }) => {
             type='submit'
           >Login
           </button>
-          <span>New to Pug.ly? &nbsp; <a className='has-text-primary'>Register Now</a></span>
+          <span>New to Pug.ly? &nbsp; <a className='has-text-primary' onClick={() => history.push('/signup')}>Register Now</a></span>
         </div>
       </form>
     </>

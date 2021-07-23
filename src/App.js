@@ -33,18 +33,6 @@ function App () {
       <Router>
         <Switch>
           <Route
-            exact path='/'
-            // I need return my component in an arrow
-            // function if I need to pass props to it
-            component={() =>
-              <Dashboard
-                setToken={setToken}
-                setUsername={setUsername}
-                token={token}
-                username={username}
-              />}
-          />
-          <Route
             path='/login'
             component={() =>
               <Login setAuthToken={setAuthToken} />}
@@ -52,6 +40,14 @@ function App () {
           <Route
             path='/signup'
             component={() => <Signup />}
+          />
+          <Route
+            exact path='/' component={() => <Dashboard
+              username={username}
+              setUsername={setUsername}
+              setToken={setToken}
+              token={token}
+                                            />}
           />
         </Switch>
       </Router>

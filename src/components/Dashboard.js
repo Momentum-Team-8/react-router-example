@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { requestUser } from '../api'
 
 // I am destructuring my props object by passing a shorthand object
@@ -8,6 +9,7 @@ const Dashboard = ({ username, setUsername, setToken, token }) => {
   // after the useEffect runs I want to save my
   // user information to the state of the Dashboard
   const [user, setUser] = useState({})
+  const history = useHistory()
 
   useEffect(() => {
     return requestUser(token, username)
@@ -23,6 +25,7 @@ const Dashboard = ({ username, setUsername, setToken, token }) => {
   const handleLogout = () => {
     setUsername('')
     setToken('')
+    history.push('/login')
   }
 
   return (
